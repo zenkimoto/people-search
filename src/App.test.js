@@ -3,6 +3,10 @@ import App from './App';
 
 test('renders the App component correctly', () => {
   render(<App />);
-  const textElement = screen.getByText(/Search/i);
-  expect(textElement).toBeInTheDocument();
+  const searchInput = screen.queryByPlaceholderText('Search for a Person');
+  expect(searchInput).toBeInTheDocument();
+
+  const buttonElement = screen.getByText(/Search/i);
+  expect(buttonElement).toBeInTheDocument();
+  expect(buttonElement.nodeName).toEqual('BUTTON');
 });

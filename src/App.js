@@ -3,7 +3,7 @@ import Search from './components/search/search';
 
 function App() {
   return (
-    <div class="grid grid-cols-2">
+    <div className="grid grid-cols-2">
       <Search />
       <Results />
     </div>
