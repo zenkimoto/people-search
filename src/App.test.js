@@ -1,10 +1,17 @@
-import { render, screen } from '@testing-library/react';
+import { render, cleanup, screen } from '@testing-library/react';
 import App from './App';
 
-test('renders the App component correctly', () => {
+afterEach(cleanup);
+
+it('should render a search field', () => {
   render(<App />);
+
   const searchInput = screen.queryByPlaceholderText('Search for a Person');
   expect(searchInput).toBeInTheDocument();
+});
+
+it('should render a search button', () => {
+  render(<App />);
 
   const buttonElement = screen.getByText(/Search/i);
   expect(buttonElement).toBeInTheDocument();

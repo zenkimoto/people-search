@@ -5,12 +5,12 @@ const Search = () => {
   return (
     <div>
       <Formik
-        initialValues={{ name: '' }}
+        initialValues={{ searchTerm: '' }}
         validationSchema={Yup.object({
-          name: Yup.string().required('Required'),
+          searchTerm: Yup.string().required('Required'),
         })}
       >
-        <Form>
+        <Form className="p-8">
           <div className="relative">
             <svg
               width="20"
@@ -26,15 +26,17 @@ const Search = () => {
             </svg>
             <Field
               className="focus:border-light-blue-500 focus:ring-1 focus:ring-light-blue-500 focus:outline-none w-full text-sm text-black placeholder-gray-500 border border-gray-200 rounded-md py-2 pl-10"
-              name="name"
+              name="searchTerm"
               type="text"
               placeholder="Search for a Person"
             />
           </div>
-          <ErrorMessage name="name" />
+          <div className="text-red-700">
+            <ErrorMessage name="searchTerm" />
+          </div>
           <button
             type="submit"
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded my-4"
           >
             Search
           </button>

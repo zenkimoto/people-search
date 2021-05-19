@@ -1,5 +1,5 @@
 const Results = () => {
-  return <div>Results</div>;
+  return <div className="p-8">Results</div>;
 };
 
 export default Results;
