@@ -1,7 +1,7 @@
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 
-const Search = () => {
+const Search = ({ onSearch }) => {
   return (
     <div>
       <Formik
@@ -9,6 +9,9 @@ const Search = () => {
         validationSchema={Yup.object({
           searchTerm: Yup.string().required('Required'),
         })}
+        onSubmit={(values, action) => {
+          onSearch(values.searchTerm);
+        }}
       >
         <Form className="p-8">
           <div className="relative">
