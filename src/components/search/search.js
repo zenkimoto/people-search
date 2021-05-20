@@ -34,11 +34,12 @@ const Search = ({ onSearch }) => {
               placeholder="Search for a Person"
             />
           </div>
-          <div className="text-red-700">
+          <div className="text-red-700" data-testid="errorMessage">
             <ErrorMessage name="searchTerm" />
           </div>
           <button
             type="submit"
+            id="searchButton"
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded my-4"
           >
             Search

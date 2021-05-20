@@ -8,7 +8,7 @@ function App() {
 
   const searchPeople = async (term) => {
     const results = await peopleSearch.search(term);
-    setPeople(results);
+    setPeople(results.users ?? []);
   };
 
   return (

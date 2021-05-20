@@ -3,22 +3,39 @@ import fs from 'fs';
 import util from 'util';
 
 const mockFetchResponse = async () => {
+  // Read JSON Response from File
   const readFile = util.promisify(fs.readFile);
   const file = await readFile(__dirname + '/people.service.test.data.json');
 
-  fetch.mockResponseOnce(file.toString());
+  // Mock Response
+  fetch.mockResponse(file.toString(), {
+    status: 200,
+    statusText: 'Ok',
+  });
 };
 
 beforeEach(() => {
   fetch.resetMocks();
-  mockFetchResponse();
 });
 
-it('should render a search field', async () => {
+it('should return a search result', async () => {
   await mockFetchResponse();
 
-  let result = await peopleService.search('weiss');
+  const { ok, users } = await peopleService.search('weiss');
 
-  expect(result.length).toEqual(1);
-  expect(result[0].name).toEqual('Kurtis Weissnat');
+  expect(ok).toBeTruthy();
+  expect(users.length).toEqual(1);
+  expect(users[0].name).toEqual('Kurtis Weissnat');
+});
+
+it('should handle http response errors', async () => {
+  fetch.mockResponse('', {
+    status: 500,
+    statusText: 'Internal Server Error',
+  });
+
+  const { ok, error } = await peopleService.search('weiss');
+
+  expect(ok).toBeFalsy();
+  expect(error).toEqual('Internal Server Error');
 });
