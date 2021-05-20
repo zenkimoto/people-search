@@ -7,8 +7,6 @@ afterEach(() => {
 });
 
 it('should not crash if no people are passed into Results component', async () => {
-  // Example from here: https://testing-library.com/docs/example-react-formik/
-
   // Render
   render(<Results />);
 });
@@ -21,10 +19,12 @@ it('should render a list of people', async () => {
 
   render(<Results people={people} />);
 
+  // Get list item by test id
   const listItem1 = screen.getByTestId('person-1');
   expect(listItem1).toBeInTheDocument();
   expect(listItem1).toHaveTextContent('John Smith');
 
+  // Get list item by test id
   const listItem2 = screen.getByTestId('person-2');
   expect(listItem2).toBeInTheDocument();
   expect(listItem2).toHaveTextContent('Jane Doe');
