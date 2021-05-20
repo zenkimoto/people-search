@@ -25,7 +25,7 @@ it('should call the onSearch handler when user clicks search', async () => {
 
   // Validate callback
   await waitFor(() => {
-    expect(handleSearch).toHaveBeenCalledWith('john');
+    expect(handleSearch).toHaveBeenCalledWith({ searchName: 'john' });
   });
 });
 

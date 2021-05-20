@@ -6,14 +6,14 @@ import peopleSearch from './services/people.service';
 function App() {
   const [people, setPeople] = useState([]);
 
-  const searchPeople = async (term) => {
-    const results = await peopleSearch.search(term);
+  const searchPeople = async ({ searchName }) => {
+    const results = await peopleSearch.search(searchName);
     setPeople(results.users ?? []);
   };
 
   return (
     <div className="grid grid-cols-2">
-      <Search onSearch={(searchTerm) => searchPeople(searchTerm)} />
+      <Search onSearch={(search) => searchPeople(search)} />
       <Results people={people} />
     </div>
   );
