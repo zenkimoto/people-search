@@ -9,10 +9,21 @@ const Search = ({ onSearch }) => {
       <h1 className="text-lg mb-4">People Search</h1>
       <Formik
         initialValues={{ searchName: '', searchAddress: '' }}
-        validationSchema={Yup.object({
-          searchName: Yup.string().required('Required'),
-          searchAddress: Yup.string(),
-        })}
+        validationSchema={Yup.object().shape(
+          {
+            searchName: Yup.string().when('searchAddress', {
+              is: (address) => !address,
+              then: Yup.string().required('Required'),
+              otherwise: Yup.string(),
+            }),
+            searchAddress: Yup.string().when('searchName', {
+              is: (name) => !name,
+              then: Yup.string().required('Required'),
+              otherwise: Yup.string(),
+            }),
+          },
+          [['searchName', 'searchAddress']]
+        )}
         onSubmit={(values, action) => onSearch(values)}
       >
         <Form>
