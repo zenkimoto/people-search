@@ -18,14 +18,24 @@ beforeEach(() => {
   fetch.resetMocks();
 });
 
-it('should return a search result', async () => {
+it('should return a search result when searching for a name', async () => {
   await mockFetchResponse();
 
-  const { ok, users } = await peopleService.search('weiss');
+  const { ok, users } = await peopleService.search('weiss', '');
 
   expect(ok).toBeTruthy();
   expect(users.length).toEqual(1);
   expect(users[0].name).toEqual('Kurtis Weissnat');
+});
+
+it('should return search results when searching for an address', async () => {
+  await mockFetchResponse();
+
+  const { ok, users } = await peopleService.search('', 'kulas');
+
+  expect(ok).toBeTruthy();
+  expect(users.length).toEqual(1);
+  expect(users[0].address.street).toEqual('Kulas Light');
 });
 
 it('should handle http response errors', async () => {

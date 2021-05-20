@@ -1,9 +1,9 @@
 import { Field, ErrorMessage } from 'formik';
 
-const SearchField = ({ fieldName, testId }) => {
+const SearchField = ({ fieldName, testId, placeholder, className }) => {
   return (
     <>
-      <div className="relative">
+      <div className={`relative ${className}`}>
         <svg
           width="20"
           height="20"
@@ -20,7 +20,7 @@ const SearchField = ({ fieldName, testId }) => {
           className="focus:border-light-blue-500 focus:ring-1 focus:ring-light-blue-500 focus:outline-none w-full text-sm text-black placeholder-gray-500 border border-gray-200 rounded-md py-2 pl-10"
           name={fieldName}
           type="text"
-          placeholder="Search for a Person"
+          placeholder={placeholder}
         />
       </div>
       <div className="text-red-700" data-testid={testId}>

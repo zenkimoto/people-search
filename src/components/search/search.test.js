@@ -25,7 +25,10 @@ it('should call the onSearch handler when user clicks search', async () => {
 
   // Validate callback
   await waitFor(() => {
-    expect(handleSearch).toHaveBeenCalledWith({ searchName: 'john' });
+    expect(handleSearch).toHaveBeenCalledWith({
+      searchName: 'john',
+      searchAddress: '',
+    });
   });
 });
 
@@ -48,7 +51,7 @@ it('should display an error message when the form is not valid', async () => {
   render(<Search />);
 
   // Get error message element by test id (Example: get element by data-testid)
-  const errorMessage = screen.getByTestId('errorMessage');
+  const errorMessage = screen.getByTestId('errorMessageName');
 
   // Search Button Click (Example: get by text)
   const button = screen.getByText(/^Search$/i);

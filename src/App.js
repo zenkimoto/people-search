@@ -6,8 +6,8 @@ import peopleSearch from './services/people.service';
 function App() {
   const [people, setPeople] = useState([]);
 
-  const searchPeople = async ({ searchName }) => {
-    const results = await peopleSearch.search(searchName);
+  const searchPeople = async ({ searchName, searchAddress }) => {
+    const results = await peopleSearch.search(searchName, searchAddress);
     setPeople(results.users ?? []);
   };
 

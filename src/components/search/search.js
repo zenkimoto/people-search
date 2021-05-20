@@ -8,14 +8,26 @@ const Search = ({ onSearch }) => {
     <div className="p-10">
       <h1 className="text-lg mb-4">People Search</h1>
       <Formik
-        initialValues={{ searchName: '' }}
+        initialValues={{ searchName: '', searchAddress: '' }}
         validationSchema={Yup.object({
           searchName: Yup.string().required('Required'),
+          searchAddress: Yup.string(),
         })}
         onSubmit={(values, action) => onSearch(values)}
       >
         <Form>
-          <SearchField fieldName="searchName" testId="errorMessage" />
+          <SearchField
+            className="mb-2"
+            fieldName="searchName"
+            testId="errorMessageName"
+            placeholder="Search for a Person"
+          />
+          <SearchField
+            className="mb-2"
+            fieldName="searchAddress"
+            testId="errorMessageAddress"
+            placeholder="Search for an Address"
+          />
           <button
             type="submit"
             id="searchButton"
