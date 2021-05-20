@@ -51,7 +51,7 @@ it('should display an error message when the form is not valid', async () => {
   const errorMessage = screen.getByTestId('errorMessage');
 
   // Search Button Click (Example: get by text)
-  const button = screen.getByText('Search');
+  const button = screen.getByText(/^Search$/i);
   userEvent.click(button);
 
   // Wait for Formik

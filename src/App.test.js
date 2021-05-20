@@ -13,7 +13,7 @@ it('should render a search field', () => {
 it('should render a search button', () => {
   render(<App />);
 
-  const buttonElement = screen.getByText(/Search/i);
+  const buttonElement = screen.getByText(/^Search$/i);
   expect(buttonElement).toBeInTheDocument();
   expect(buttonElement.nodeName).toEqual('BUTTON');
 });

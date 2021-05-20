@@ -2,10 +2,10 @@
 
 exports[`should match snapshot 1`] = `
 <div
-  className="p-8"
+  className="p-10"
 >
   <h1
-    className="text-lg"
+    className="text-lg mb-4"
   >
     Results
   </h1>
