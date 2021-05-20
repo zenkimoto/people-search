@@ -1,8 +1,8 @@
 const Results = ({ people }) => {
   return (
     <div className="p-8">
-      Results
-      <ul>
+      <h1 className="text-lg">Results</h1>
+      <ul className="list-disc">
         {people.map((p) => (
           <li key={p.id}>{p.name}</li>
         ))}
