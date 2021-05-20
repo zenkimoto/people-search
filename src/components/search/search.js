@@ -4,7 +4,8 @@ import PropTypes from 'prop-types';
 
 const Search = ({ onSearch }) => {
   return (
-    <div>
+    <div className="p-10">
+      <h1 className="text-lg mb-4">People Search</h1>
       <Formik
         initialValues={{ searchTerm: '' }}
         validationSchema={Yup.object({
@@ -14,7 +15,7 @@ const Search = ({ onSearch }) => {
           onSearch(values.searchTerm);
         }}
       >
-        <Form className="p-8">
+        <Form>
           <div className="relative">
             <svg
               width="20"
