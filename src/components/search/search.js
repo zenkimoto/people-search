@@ -1,5 +1,6 @@
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
+import PropTypes from 'prop-types';
 
 const Search = ({ onSearch }) => {
   return (
@@ -48,6 +49,10 @@ const Search = ({ onSearch }) => {
       </Formik>
     </div>
   );
+};
+
+Search.propTypes = {
+  onSearch: PropTypes.func,
 };
 
 export default Search;

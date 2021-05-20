@@ -43,7 +43,7 @@ it('should not call the onSearch handler when form is not valid', async () => {
   });
 });
 
-it('should display an error message to the user when the form is not valid', async () => {
+it('should display an error message when the form is not valid', async () => {
   // Example: Using screen instead of container.  (Using screen is recommended by Kent C. Dodds)
   render(<Search />);
 

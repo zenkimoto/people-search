@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 const Results = ({ people = [] }) => {
   return (
     <div className="p-8">
@@ -11,6 +13,10 @@ const Results = ({ people = [] }) => {
       </ul>
     </div>
   );
+};
+
+Results.propTypes = {
+  people: PropTypes.array,
 };
 
 export default Results;
