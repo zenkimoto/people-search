@@ -7,7 +7,7 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "Launch Program",
+            "name": "Debug Unit Tests",
             "cwd": "${workspaceFolder}",
             "runtimeExecutable": "npm",
             "runtimeArgs": ["run-script", "test"]
