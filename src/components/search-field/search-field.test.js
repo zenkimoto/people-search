@@ -18,5 +18,5 @@ it('should render an input with a firstName attribute', async () => {
 
   const firstNameElement = container.querySelector('input[name="firstName"]');
 
-  expect(firstNameElement).not.toBeNull();
+  expect(firstNameElement).toBeInTheDocument();
 });

@@ -6,11 +6,6 @@ afterEach(() => {
   cleanup();
 });
 
-it('should not crash if no people are passed into Results component', async () => {
-  // Render
-  render(<Results />);
-});
-
 it('should render a list of people', async () => {
   const people = [
     { id: 1, name: 'John Smith' },
