@@ -1,15 +1,9 @@
-import { useState } from 'react';
 import Results from './components/results/results';
 import Search from './components/search/search';
-import peopleSearch from './services/people.service';
+import usePeopleSearch from './hooks/usePeopleSearch';
 
 function App() {
-  const [people, setPeople] = useState([]);
-
-  const searchPeople = async ({ searchName, searchAddress }) => {
-    const results = await peopleSearch.search(searchName, searchAddress);
-    setPeople(results.users ?? []);
-  };
+  const [people, searchPeople] = usePeopleSearch();
 
   return (
     <div className="grid grid-cols-2">
