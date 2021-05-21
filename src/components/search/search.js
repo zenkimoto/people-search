@@ -53,7 +53,7 @@ const Search = ({ onSearch }) => {
 };
 
 Search.propTypes = {
-  onSearch: PropTypes.func,
+  onSearch: PropTypes.func.isRequired,
 };
 
 export default Search;

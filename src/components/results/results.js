@@ -16,7 +16,7 @@ const Results = ({ people = [] }) => {
 };
 
 Results.propTypes = {
-  people: PropTypes.array,
+  people: PropTypes.array.isRequired,
 };
 
 export default Results;
