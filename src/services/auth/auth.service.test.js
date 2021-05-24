@@ -1,7 +1,20 @@
-import authService from './auth.service';
+import AuthService from './auth.service';
 
 // Testing Asynchronous Code
 // https://jestjs.io/docs/asynchronous
+
+let authService;
+let setAuthenticated;
+
+beforeEach(() => {
+  setAuthenticated = jest.fn();
+  authService = new AuthService(setAuthenticated);
+});
+
+afterEach(() => {
+  setAuthenticated = null;
+  authService = null;
+});
 
 it('should login successfully', async () => {
   // Test promise fulfilled
@@ -13,7 +26,7 @@ it('should login successfully', async () => {
     user: { id: 1, username: 'user' },
   });
 
-  expect(authService.isAuthenticated).toBeTruthy();
+  expect(setAuthenticated).toBeCalledWith(true);
 });
 
 it('should reject invalid login', async () => {
@@ -22,5 +35,5 @@ it('should reject invalid login', async () => {
     error: 'Invalid username and/or password.',
   });
 
-  expect(authService.isAuthenticated).toBeFalsy();
+  expect(setAuthenticated).toBeCalledWith(false);
 });
