@@ -3,14 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@testing-library/jest-dom": "^5.11.4",
-    "@testing-library/react": "^11.1.0",
-    "@testing-library/user-event": "^12.1.10",
     "formik": "^2.2.7",
-    "jest-fetch-mock": "^3.0.3",
     "prop-types": "^15.7.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
     "web-vitals": "^1.0.1",
     "yup": "^0.32.9"
@@ -21,7 +18,10 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "docker:build": "docker build -t people-search:1.0 .",
-    "docker:run": "docker run -it -p:3000:3000 people-search:1.0"
+    "docker:run": "docker run -it -p:3000:3000 people-search:1.0",
+    "docker:prune": "docker image prune -a -f",
+    "docker:boom": "docker rmi $(docker images -a -q) -f",
+    "docker:list": "docker images -a"
   },
   "eslintConfig": {
     "extends": [
@@ -42,9 +42,10 @@
     ]
   },
   "devDependencies": {
-    "autoprefixer": "^9",
-    "postcss": "^7",
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.1.0",
+    "@testing-library/user-event": "^12.1.10",
     "react-test-renderer": "^17.0.2",
-    "tailwindcss": "npm:@tailwindcss/postcss7-compat"
+    "jest-fetch-mock": "^3.0.3"
   }
 }

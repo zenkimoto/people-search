@@ -1,5 +1,5 @@
 # pull official base image
-FROM node:16.2.0
+FROM node:14.17-alpine3.10
 
 # set working directory
 WORKDIR /app
@@ -9,17 +9,12 @@ ENV PATH /app/node_modules/.bin:$PATH
 
 # install app dependencies
 COPY package.json ./
-COPY package-lock.json ./
-RUN npm install 
-# RUN npm install -D tailwindcss@npm:@tailwindcss/postcss7-compat postcss@^7 autoprefixer@^9
-# RUN npm install react-scripts@3.4.1 -g
+COPY yarn.lock ./
+
+RUN yarn install 
 
 # add app
 COPY . ./
-
-EXPOSE 3000
-
-EXPOSE $PORT
 
 # start app
 CMD ["npm", "start"]
