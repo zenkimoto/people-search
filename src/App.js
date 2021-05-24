@@ -1,15 +1,21 @@
-import Results from './components/results/results';
-import Search from './components/search/search';
-import usePeopleSearch from './hooks/usePeopleSearch';
+import { Router, Route, Redirect } from 'react-router-dom';
+import Main from './components/main/main';
+import Login from './components/login/login';
+import history from './util/history';
 
 function App() {
-  const [people, searchPeople] = usePeopleSearch();
-
   return (
-    <div className="grid grid-cols-2">
-      <Search onSearch={(search) => searchPeople(search)} />
-      <Results people={people} />
-    </div>
+    <Router history={history}>
+      <Route exact path="/">
+        <Redirect to="/login" />
+      </Route>
+      <Route path="/login">
+        <Login />
+      </Route>
+      <Route path="/main">
+        <Main></Main>
+      </Route>
+    </Router>
   );
 }
 

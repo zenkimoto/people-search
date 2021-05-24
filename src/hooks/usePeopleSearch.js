@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import peopleSearch from '../services/people.service';
+import peopleSearch from '../services/people/people.service';
 
 function usePeopleSearch() {
   const [people, setPeople] = useState([]);
