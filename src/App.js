@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
+import ProtectedRoute from './components/protected-route/protected-route';
 import Main from './components/main/main';
 import Login from './components/login/login';
 
@@ -11,9 +12,9 @@ function App() {
       <Route path="/login">
         <Login />
       </Route>
-      <Route path="/main">
+      <ProtectedRoute path="/main">
         <Main></Main>
-      </Route>
+      </ProtectedRoute>
     </Router>
   );
 }
