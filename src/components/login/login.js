@@ -2,13 +2,18 @@ import { useReducer } from 'react';
 import { useHistory } from 'react-router-dom';
 
 const loginReducer = (state, action) => {
+  const setValidState = (state) => ({
+    ...state,
+    valid: state.username && state.password ? true : false,
+  });
+
   switch (action.type) {
     case 'SET_USERNAME':
-      return { ...state, username: action.payload };
+      return setValidState({ ...state, username: action.payload });
     case 'SET_PASSWORD':
-      return { ...state, password: action.payload };
+      return setValidState({ ...state, password: action.payload });
     case 'SET_ERROR':
-      return { ...state, error: action.payload };
+      return setValidState({ ...state, error: action.payload });
     default:
       return state;
   }
@@ -18,10 +23,8 @@ const Login = ({ authService }) => {
   const [state, dispatch] = useReducer(loginReducer, {
     username: '',
     password: '',
+    valid: false,
   });
-  // const [username, setUsername] = useState('');
-  // const [password, setPassword] = useState('');
-  // const [error, setError] = useState('');
   const history = useHistory();
 
   const onSubmitHandler = async (e) => {
@@ -83,6 +86,7 @@ const Login = ({ authService }) => {
           <button
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
             type="submit"
+            disabled={!state.valid}
           >
             Sign In
           </button>
