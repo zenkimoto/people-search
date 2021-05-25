@@ -1,21 +1,38 @@
-import { useState } from 'react';
+import { useReducer } from 'react';
 import { useHistory } from 'react-router-dom';
 
+const loginReducer = (state, action) => {
+  switch (action.type) {
+    case 'SET_USERNAME':
+      return { ...state, username: action.payload };
+    case 'SET_PASSWORD':
+      return { ...state, password: action.payload };
+    case 'SET_ERROR':
+      return { ...state, error: action.payload };
+    default:
+      return state;
+  }
+};
+
 const Login = ({ authService }) => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const [state, dispatch] = useReducer(loginReducer, {
+    username: '',
+    password: '',
+  });
+  // const [username, setUsername] = useState('');
+  // const [password, setPassword] = useState('');
+  // const [error, setError] = useState('');
   const history = useHistory();
 
   const onSubmitHandler = async (e) => {
     e.preventDefault();
 
     try {
-      await authService.login(username, password);
+      await authService.login(state.username, state.password);
 
       history.push('/main');
     } catch (error) {
-      setError(error.error);
+      dispatch({ type: 'SET_ERROR', payload: error.error });
     }
   };
 
@@ -23,7 +40,7 @@ const Login = ({ authService }) => {
     <form onSubmit={onSubmitHandler}>
       <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col">
         <div className="mb-4">
-          <p className="text-red-700">{error}</p>
+          <p className="text-red-700">{state.error}</p>
           <label
             className="block text-grey-darker text-sm font-bold mb-2"
             htmlFor="username"
@@ -35,8 +52,10 @@ const Login = ({ authService }) => {
             id="username"
             type="text"
             placeholder="Username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            value={state.username}
+            onChange={(e) =>
+              dispatch({ type: 'SET_USERNAME', payload: e.target.value })
+            }
           />
         </div>
         <div className="mb-6">
@@ -51,8 +70,10 @@ const Login = ({ authService }) => {
             id="password"
             type="password"
             placeholder="******************"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            value={state.password}
+            onChange={(e) =>
+              dispatch({ type: 'SET_PASSWORD', payload: e.target.value })
+            }
           />
         </div>
         <div className="flex items-center justify-between">
