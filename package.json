@@ -20,7 +20,7 @@
     "eject": "react-scripts eject",
     "docker:build": "docker build -t people-search:1.0 .",
     "docker:run": "docker run -it -p:80:80 people-search:1.0",
-    "docker:prune": "docker image prune -a -f",
+    "docker:prune": "docker image prune -a -f && docker system prune -f",
     "docker:boom": "docker rmi $(docker images -a -q) -f",
     "docker:list": "docker images -a"
   },
